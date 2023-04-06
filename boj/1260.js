@@ -1,10 +1,10 @@
-let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
-// let input = `5 5 3
-// 5 4
-// 5 2
-// 1 2
-// 3 4
-// 3 1`.toString().trim().split('\n');
+// let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+let input = `5 5 3
+5 4
+5 2
+1 2
+3 4
+3 1`.toString().trim().split('\n');
 
 const [vertex, edge, start] = input[0].split(' ').map(Number);
 
@@ -34,7 +34,7 @@ function dfs(graph, current, visited) {
 
   if(graph[current] !== undefined) graph[current].sort((a,b) => a-b);
 
-  for(let i = 0; i < (graph[current] || []).length; i++) {
+  for(let i = 0; i < (graph[current] ?? []).length; i++) {
     if(visited[graph[current][i]] === false) {
       dfs(graph, graph[current][i], visited);
     }
@@ -57,7 +57,7 @@ function bfs(graph, start, visited) {
 
     if(graph[current] !== undefined) graph[current].sort((a,b) => a-b);
     
-    for(let i = 0; i < (graph[current] || []).length; i++) {
+    for(let i = 0; i < (graph[current] ?? []).length; i++) {
       if(visited[graph[current][i]] === false) {
         queue.push(graph[current][i]);
         visited[graph[current][i]] = true;
