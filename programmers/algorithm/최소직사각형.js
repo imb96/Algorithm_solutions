@@ -11,3 +11,14 @@ function solution(sizes) {
   }
   return w * h;
 }
+
+function solution(sizes) {
+  sizes.map((size) => size.sort((a, b) => b - a));
+  const withs = sizes.map((size) => size[0]);
+  const heights = sizes.map((size) => size[1]);
+
+  const w = Math.max(...withs);
+  const h = Math.max(...heights);
+
+  return w * h;
+}

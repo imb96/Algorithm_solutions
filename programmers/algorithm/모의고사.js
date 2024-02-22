@@ -25,3 +25,28 @@ function solution(answers) {
 
   return answer;
 }
+
+function solution(answers) {
+  const count = [
+    [1, 0],
+    [2, 0],
+    [3, 0],
+  ];
+
+  const firstMan = "12345".repeat(Math.ceil(answers.length / 5));
+  const secondMan = "21232425".repeat(Math.ceil(answers.length / 8));
+  const thirdMan = "3311224455".repeat(Math.ceil(answers.length / 10));
+
+  const strAnswers = answers.map((answer) => String(answer));
+
+  for (let i = 0; i < strAnswers.length; i++) {
+    strAnswers[i] === firstMan.charAt(i) && count[0][1]++;
+    strAnswers[i] === secondMan.charAt(i) && count[1][1]++;
+    strAnswers[i] === thirdMan.charAt(i) && count[2][1]++;
+  }
+
+  const max = Math.max(...count.map((man) => man[1]));
+
+  const result = count.filter((man) => man[1] === max).map((x) => x[0]);
+  return result;
+}
